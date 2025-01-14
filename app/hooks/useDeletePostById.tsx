@@ -7,10 +7,10 @@ import useGetLikesByPostId from "./useGetLikesByPostId";
 const useDeletePostById = async (postId: string, currentImage: string) => {
     try {
         const likes = await useGetLikesByPostId(postId)
-        likes.forEach(async like => { await useDeleteLike(like?.id) })
+        likes.forEach(async (like: { id: string; }) => { await useDeleteLike(like?.id) })
 
         const comments = await useGetCommentsByPostId(postId)
-        comments.forEach(async comment => { await useDeleteComment(comment?.id) })
+        comments.forEach(async (comment: { id: string; }) => { await useDeleteComment(comment?.id) })
 
         await database.deleteDocument(
             String(process.env.NEXT_PUBLIC_DATABASE_ID),

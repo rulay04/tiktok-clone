@@ -8,6 +8,7 @@ const useGetAllPosts = async () => {
             String(process.env.NEXT_PUBLIC_COLLECTION_ID_POST),
             [Query.orderDesc("$id")]
         );
+        console.log(response);
         const documents = response.documents;
 
         const objPromises = documents.map(async doc => {

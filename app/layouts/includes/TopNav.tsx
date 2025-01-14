@@ -1,5 +1,4 @@
 import Link from "next/link"
-import debounce;
 import { useRouter, usePathname } from "next/navigation"
 import { BiSearch, BiUser } from "react-icons/bi"
 import { AiOutlinePlus } from "react-icons/ai"
@@ -10,7 +9,9 @@ import { useUser } from "@/app/context/user"
 import { useGeneralStore } from "@/app/stores/general"
 import useCreateBucketUrl from "@/app/hooks/useCreateBucketUrl"
 import { RandomUsers } from "@/app/types"
-import useSearchProfilesByName from "@/app/hooks/useSearchProfilesByName";
+import useSearchProfilesByName from "@/app/hooks/useSearchProfilesByName"
+import debounce from 'debounce';
+
 
 export default function TopNav() {
     const userContext = useUser()
@@ -41,6 +42,7 @@ export default function TopNav() {
         if (!userContext?.user) return setIsLoginOpen(true)
         router.push('/upload')
     }
+
 
     return (
         <>
